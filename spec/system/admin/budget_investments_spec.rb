@@ -74,6 +74,7 @@ describe "Admin budget investments", :admin do
         expect(page).to have_content("Health")
       end
 
+      # TODO
       budget_investment3.update!(administrator_id: admin.id)
       visit admin_budget_budget_investments_path(budget_id: budget.id)
 
@@ -648,6 +649,7 @@ describe "Admin budget investments", :admin do
       expect(page).to have_content("More schools")
       expect(page).not_to have_content("More hospitals")
 
+      # TODO
       educate_children_investment = Budget::Investment.find_by(title: "Educate the children")
       fill_in "title_or_id", with: educate_children_investment.id
       click_button "Filter"
@@ -682,6 +684,7 @@ describe "Admin budget investments", :admin do
       expect(page).to have_content("More schools")
       expect(page).not_to have_content("More hospitals")
 
+      # TODO
       educate_children_investment = Budget::Investment.find_by(title: "Educate the children")
       fill_in "title_or_id", with: educate_children_investment.id
       click_button "Filter"
@@ -735,6 +738,7 @@ describe "Admin budget investments", :admin do
       expect(page).not_to have_content("More hospitals")
       expect(page).not_to have_content("More hostals")
 
+      # TODO
       educate_children_investment = Budget::Investment.find_by(title: "Educate the children")
       fill_in "title_or_id", with: educate_children_investment.id
       click_button "Filter"
@@ -1077,6 +1081,7 @@ describe "Admin budget investments", :admin do
       check "Marta"
       click_button "Update Budget"
 
+      # TODO
       visit admin_budget_budget_investment_path(budget_investment.budget, budget_investment)
       click_link "Edit classification"
 
@@ -1105,6 +1110,7 @@ describe "Admin budget investments", :admin do
       check "Valentina"
       check "Val"
       click_button "Update Budget"
+      # TODO
 
       visit admin_budget_budget_investment_path(budget_investment.budget, budget_investment)
       click_link "Edit classification"
@@ -1228,6 +1234,7 @@ describe "Admin budget investments", :admin do
       fill_in "budget_investment_valuation_tag_list", with: "Education, Environment"
       click_button "Update"
 
+      # TODO
       visit admin_budget_budget_investment_path(budget_investment.budget, budget_investment)
 
       within("#tags_budget_investment_#{budget_investment.id}") do
@@ -1568,6 +1575,7 @@ describe "Admin budget investments", :admin do
         check "budget_investment_visible_to_valuators"
       end
 
+      # TODO
       visit admin_budget_budget_investments_path(budget)
       click_link "Advanced filters"
       check "Under valuation"
@@ -1686,6 +1694,7 @@ describe "Admin budget investments", :admin do
         check "budget_investment_visible_to_valuators"
       end
 
+      # TODO
       visit edit_admin_budget_budget_investment_path(budget, investment1)
 
       expect(page).to have_content "Possimpible"
@@ -1736,7 +1745,7 @@ describe "Admin budget investments", :admin do
       expect(page.body).to eq(csv_contents)
     end
 
-    scenario "Downloading CSV file with applied filter" do
+    scenario "Downloading CSV file with applied filter", :no_js do
       create(:budget_investment, :unfeasible, budget: budget, title: "Unfeasible one")
       create(:budget_investment, :finished, budget: budget, title: "Finished Investment")
 
@@ -1745,6 +1754,7 @@ describe "Admin budget investments", :admin do
       check "Valuation finished"
       click_button "Filter"
 
+      # TODO
       click_link "Download current selection"
 
       expect(page).to have_content("Finished Investment")
